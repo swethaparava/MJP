@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 
+app.set('port', (process.env.PORT || 5000));
 var fs = require("fs");
 
 var bodyParser = require('body-parser');
@@ -34,8 +35,6 @@ app.post("/file_upload",function(req,res){
    console.log(req.files.file.path);	
 });
 
-var server = app.listen(8081,function() {
-	var port = server.address().port;
-	var host = server.address().host;
-	console.log("Server listening on port",port);
-})
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
